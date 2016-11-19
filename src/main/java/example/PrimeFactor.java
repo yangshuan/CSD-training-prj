@@ -1,9 +1,7 @@
 package example;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class PrimeFactor {
     public static List<Integer> breakdown(final int number) {
