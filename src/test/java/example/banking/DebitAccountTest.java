@@ -25,10 +25,10 @@ public class DebitAccountTest {
         account.deposit(50);
         try {
             account.withdraw(60);
+            fail();
         } catch (Exception e) {
             assertEquals(InsufficientFundsException.class, e.getClass());
+            assertEquals(50, account.getBalance());
         }
-
-        assertEquals(50, account.getBalance());
     }
 }
