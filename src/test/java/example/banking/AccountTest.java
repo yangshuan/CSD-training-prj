@@ -6,11 +6,6 @@ import static org.junit.Assert.*;
 
 public class AccountTest {
     @Test
-    public void openDebitAccountIsNotNull() throws Exception {
-        assertNotNull(Account.openDebitAccount());
-    }
-
-    @Test
     public void openAccountIsNotNull() throws Exception {
         assertNotNull(Account.openAccount());
     }
@@ -39,27 +34,5 @@ public class AccountTest {
         account.withdraw(60);
 
         assertEquals(-10, account.getBalance());
-    }
-
-    @Test
-    public void withdraw60FromDebitAccountAfterDeposit100ThenRemaiding40() throws Exception {
-        Account account = Account.openDebitAccount();
-        account.deposit(100);
-        account.withdraw(60);
-
-        assertEquals(40, account.getBalance());
-    }
-
-    @Test
-    public void withdraw60FromDebitAccountAfterDeposit50ThenRemaidingMinus10() throws Exception {
-        Account account = Account.openDebitAccount();
-        account.deposit(50);
-        try {
-            account.withdraw(60);
-        } catch (Exception e) {
-            assertEquals(InsufficientFundsException.class, e.getClass());
-        }
-
-        assertEquals(50, account.getBalance());
     }
 }

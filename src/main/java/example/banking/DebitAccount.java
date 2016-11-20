@@ -1,7 +1,8 @@
 package example.banking;
 
-/**
- * Created by shuayang on 16/11/20.
- */
-public class DebitAccount {
+public class DebitAccount extends Account {
+    @Override
+    protected boolean hasSufficientBalance(long amount) {
+        return getBalance() > amount;
+    }
 }

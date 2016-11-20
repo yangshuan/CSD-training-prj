@@ -3,19 +3,14 @@ package example.banking;
 public class Account {
     private static IAssessmentService service = new IAssessmentService.AssessmentService();
 
-    private final boolean isDebit;
     private long balance;
 
-    protected Account(boolean isDebit) {
-        this.isDebit = isDebit;
-    }
-
     public static Account openDebitAccount() {
-        return new Account(true);
+        return new DebitAccount();
     }
 
     public static Account openAccount() {
-        return new Account(false);
+        return new Account();
     }
 
     public long getBalance() {
@@ -27,10 +22,13 @@ public class Account {
     }
 
     public void withdraw(long amount) {
-        boolean insufficientFunds = getBalance() < amount;
-        balance -= amount;
-        if (isDebit && insufficientFunds) {
+        if (!hasSufficientBalance(amount)) {
             throw new InsufficientFundsException();
         }
+        balance -= amount;
+    }
+
+    protected boolean hasSufficientBalance(long amount) {
+        return true;
     }
 }
