@@ -1,12 +1,14 @@
 package example.banking;
 
 public class Account {
-    private static IAssessmentService service = new IAssessmentService.AssessmentService();
-
     private long balance;
 
     public static Account openDebitAccount() {
         return new DebitAccount();
+    }
+
+    public static Account openCreditAccount(IAssessmentService assessmentService, String socialSecurityNumber) {
+        return new CreditAccount(assessmentService, socialSecurityNumber);
     }
 
     public static Account openAccount() {
