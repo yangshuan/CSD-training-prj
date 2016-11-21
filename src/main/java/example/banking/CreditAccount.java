@@ -13,7 +13,7 @@ public class CreditAccount extends Account {
 
     protected boolean hasSufficientBalance(long amount) {
         try {
-            return getBalance() + service.getCredit(socialSecurityNumber) >= amount;
+            return getBalance() >= amount || service.getCredit(socialSecurityNumber) >= amount - getBalance();
         } catch (ConnectException e) {
             e.printStackTrace();
             return false;
